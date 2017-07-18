@@ -24,7 +24,11 @@ router.get('/surprise', auth.checkLoggedIn('You must be login', '/login'), funct
 });
 
 router.get('/classic', auth.checkLoggedIn('You must be login', '/login'), function(req, res, next) {
-  res.render('search/classic', {user: req.user, scripts: ['functions.js','classic.js']})
+  res.render('search/classic', {user: req.user, scripts: ['functions.js','favourite.js','classic.js']})
+});
+
+router.post('/classic/favourite', auth.checkLoggedIn('You must be login', '/login'), function(req, res, next) {
+  console.log(req);
 });
 
 module.exports = router;

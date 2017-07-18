@@ -10,9 +10,10 @@ function showRecipes (response) {
                             <img src=${el.smallImageUrls[0].replace(/s90$/,"s350")}>
                         </div>
                         <div class="info">
-                            <span class='title'> Recipe: </span> ${el.recipeName} <br>
-                            <span class='title'> Ingredients: </span> ${[...el.ingredients]} <br>
-                            <span class='title'> Rating: ${el.rating}
+                            <span class='title'> Recipe: </span> <span class="name"> ${el.recipeName}</span> <br>
+                            <span class='title'> Ingredients: </span> <span class="ingredients">${[...el.ingredients]}</span> <br>
+                            <span class='title'> Rating:  </span> <span class="rating"> ${el.rating}</span>
+                            <button class='save-favourite'> Save </button>
                         </div>
 
                     </div>
@@ -23,7 +24,6 @@ function showRecipes (response) {
       url:`http://api.yummly.com/v1/api/recipe/${el.id}?_app_id=7b6372ab&_app_key=446dc1e04dcdedcfe61b2515ec058e88`,
       method:"GET",
       success: function(res) {
-          console.log(res);
           $(`#recipe${index}`).append(`<span class= 'title'> Sources: ${res.source.sourceRecipeUrl} </span>`)
       },
       error:handleError
