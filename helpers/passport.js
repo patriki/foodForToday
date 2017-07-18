@@ -1,5 +1,3 @@
-/* jshint esversion: 6 */
-
 const bcrypt        = require("bcrypt");
 const passport 			= require('passport');
 const LocalStrategy = require("passport-local").Strategy;
@@ -40,5 +38,5 @@ passport.use(new LocalStrategy({
 // 	  done(null, profile);
 // 	}));
 
-
+	
 module.exports = passport;
