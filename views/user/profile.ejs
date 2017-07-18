@@ -8,13 +8,31 @@
   <div class="panel panel-default">
     <div class="panel-heading">Information</div>
     <div class="panel-body">
-
+      
+       <!--.replace(/%20/g," ").replace(/[^A-Za-z]/g,"") --> 
 
         <div class="form-group">
           <label for="ageInput">Your age is: <%= user.age %></label><br>
 					<label for="weightInput">Your weight: <%= user.weight %></label><br>
-					<label for="allergiesInput">Allergies: <%= user.allergies %></label><br>
-					<label for="dietInput">Diet: <%= user.kindOfDiet %></label><br>
+					<label for="allergiesInput">Allergies: 
+            <% if (user.allergies.length > 0) {
+            %> <ul> <% user.allergies.forEach((el)=> { %>
+                  <li> <%= el.replace(/[^A-Za-z-]/g,"") %> </li>
+                    <% }) %>
+              </ul>
+            <% } else { %>
+                <span> None </span>
+            <% }%>  
+          </label><br>
+					<label for="dietInput">Diet: 
+            <% if (user.kindOfDiet.length > 0) {
+            %> <ul> <% user.kindOfDiet.forEach((el)=> { %>
+                  <li> <%= el.replace(/%20/g,' ').replace(/[^A-Za-z\s]/g,"") %> </li>
+                    <% }) %>
+              </ul>
+            <% } else { %>
+                <span> None </span>
+            <% }%>  </label><br>
         </div>
         <a href="/update"><button type="submit" class="btn btn-primary btn-block">Update information</button></a>
 

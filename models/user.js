@@ -8,6 +8,7 @@ const userSchema = new Schema({
     weight: Number,
     allergies: Array,
     kindOfDiet: Array,
+	favorites: Array
 	}, {
   	timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 	}

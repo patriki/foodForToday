@@ -10,7 +10,7 @@ const bcryptSalt = 10;
 
 /* GET users listing. */
 router.get('/signup', function(req, res, next) {
-  res.render('auth/signup', { "message": req.flash("error") });
+  res.render('auth/signup', { "message": req.flash("error"), scripts: ["functions.js","form-user.js" ] });
 });
 
 router.post("/signup", (req, res, next) => {
@@ -18,19 +18,19 @@ router.post("/signup", (req, res, next) => {
   var password = req.body.password;
   var age = req.body.age;
   var weight = req.body.weight;
-  var allergies = req.body.eachAllergy;
-  var kindOfDiet = req.body.eachDiet;
+  var allergies = req.body.eachallergy;
+  var kindOfDiet = req.body.eachdiet;
 
   if (username === "" || password === "" || age === "" || weight === "") {
   	req.flash('error', 'Fill all the text boxes, please' );
-    res.render("auth/signup", { "message": req.flash("error") });
+    res.render("auth/signup", { "message": req.flash("error"), scripts: ["functions.js","form-user.js" ] });
     return;
   }
 
   User.findOne({ username }, "username", (err, user) => {
     if (user !== null) {
     	req.flash('error', 'The username already exists' );
-      res.render("auth/signup", { message: req.flash("error") });
+      res.render("auth/signup", { message: req.flash("error") , scripts: ["functions.js","form-user.js" ]});
       return;
     }
 
@@ -49,7 +49,7 @@ router.post("/signup", (req, res, next) => {
     newUser.save((err) => {
       if (err) {
       	req.flash('error', 'The username already exists' );
-        res.render("auth/signup", { message: req.flash('error') });
+        res.render("auth/signup", { message: req.flash('error') , scripts: ["functions.js","form-user.js" ]});
       } else {
         passport.authenticate("local")(req, res, function () {
            res.redirect('/search');
