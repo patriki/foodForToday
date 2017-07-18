@@ -1,5 +1,14 @@
-var express = require('express');
-var router  = express.Router();
+/* jshint esversion: 6 */
+
+const express  = require('express');
+const bcrypt   = require("bcrypt");
+const User     = require("../models/user");
+const passport = require("../helpers/passport");
+
+const router     = express.Router();
+const bcryptSalt = 10;
+
+
 var auth    = require('../helpers/auth');
 
 

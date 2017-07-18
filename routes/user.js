@@ -1,5 +1,13 @@
-var express = require('express');
-var router  = express.Router();
+/* jshint esversion: 6 */
+
+const express  = require('express');
+const bcrypt   = require("bcrypt");
+const User     = require("../models/user");
+const passport = require("../helpers/passport");
+
+const router     = express.Router();
+const bcryptSalt = 10;
+
 var auth    = require('../helpers/auth');
 
 router.get('/profile', auth.checkLoggedIn('You must be login', '/login'), function(req, res, next) {
@@ -10,12 +18,7 @@ router.get('/update', auth.checkLoggedIn('You must be login', '/login'), functio
 });
 
 router.post("/update", (req, res, next) => {
-  req.session.passport.user.username = req.body.username;
-  req.session.passport.user.password = req.body.password;
-  req.session.passport.user.age = req.body.age;
-  req.session.passport.user.weight = req.body.weight;
-  req.session.passport.user.allergies = req.body.eachAllergy;
-  req.session.passport.user.kindOfDiet = req.body.eachDiet;
+
 
   const updates={
     username : req.body.username,
@@ -26,8 +29,10 @@ router.post("/update", (req, res, next) => {
 
   };
 
-  User.findByIdAndUpdate(req.user._id, updates, (err, user) => {
+  User.findByIdAndUpdate(req.user._id, updates, {new: true}, (err, user) => {
     if (err){ return next(err); }
+
+    req.session.passport.user = user;
     console.log(req.session.passport);
        return res.redirect('/profile');
      });
