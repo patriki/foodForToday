@@ -11,10 +11,10 @@ const bcryptSalt = 10;
 var auth    = require('../helpers/auth');
 
 router.get('/profile', auth.checkLoggedIn('You must be login', '/login'), function(req, res, next) {
-  res.render('user/profile', { user: req.user });
+  res.render('user/profile', { user: req.session.passport.user });
 });
 router.get('/update', auth.checkLoggedIn('You must be login', '/login'), function(req, res, next) {
-  res.render('user/update', { user: req.user });
+  res.render('user/update', { user: req.session.passport.user , scripts: ['functions.js','classic.js']});
 });
 
 router.post("/update", (req, res, next) => {
@@ -24,8 +24,8 @@ router.post("/update", (req, res, next) => {
     username : req.body.username,
     age : req.body.age,
     weight :req.body.weight,
-    allergies :req.body.eachAllergy,
-    kindOfDiet:req.body.eachDiet
+    allergies :req.body.eachallergy,
+    kindOfDiet:req.body.eachdiet
 
   };
 

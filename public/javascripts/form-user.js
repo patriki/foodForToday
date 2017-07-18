@@ -4,5 +4,7 @@ $(document).ready( ()=> {
     createForms('diet','shortDescription');
     createForms('allergy','shortDescription');
 
+    setUpUserInfo("allergy");
+    setUpUserInfo("diet");
 
 });

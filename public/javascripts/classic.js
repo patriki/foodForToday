@@ -20,7 +20,7 @@ $(document).ready( ()=> {
     })
 
 
-    $('.form-filters').children().on("change", (event)=> {
+    $('.form-filters').children().on("change checked", ()=> {
         myDiet=getParameters('Diet');
         myCuisine=getParameters('Cuisine');
         myCourse=getParameters('Course');

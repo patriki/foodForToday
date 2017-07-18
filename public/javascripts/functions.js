@@ -47,7 +47,7 @@ function createForms (filter, selector) {
 $.ajax({
     url: `http://api.yummly.com/v1/api/metadata/${filter}?_app_id=7b6372ab&_app_key=446dc1e04dcdedcfe61b2515ec058e88`,
     method:"GET",
-    success: function (response) { displayFilter(response,filter,selector)},
+    success: function (response) { displayFilter(response,filter,selector); setUpUserInfo("allergy"); setUpUserInfo("diet");},
     error: handleError
   });
 
@@ -64,9 +64,7 @@ function displayFilter(response,filter,selector) {
 
   }
 
-function handleError (error) {
-      console.log(error);
-  }
+
 
 function extractMetadata(response) {
     response = response.split(",").filter(function(chunk, index, array){
@@ -78,3 +76,15 @@ function extractMetadata(response) {
     return JSON.parse(response);
 
 }
+
+function setUpUserInfo(filterAttr) {
+    let filterArray=$(`script[${filterAttr}]`).attr(`${filterAttr}`).split(",");
+    filterArray.forEach((el)=> {
+        $(`input[value="${el}"]`).attr("checked",true);
+    })
+
+}
+
+function handleError (error) {
+      console.log(error);
+  }
