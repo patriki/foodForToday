@@ -1,3 +1,5 @@
+/* jshint esversion: 6 */
+
 const express  = require('express');
 const bcrypt   = require("bcrypt");
 const User     = require("../models/user");
@@ -14,9 +16,13 @@ router.get('/signup', function(req, res, next) {
 router.post("/signup", (req, res, next) => {
   var username = req.body.username;
   var password = req.body.password;
+  var age = req.body.age;
+  var weight = req.body.weight;
+  var allergies = req.body.eachAllergy;
+  var kindOfDiet = req.body.eachDiet;
 
-  if (username === "" || password === "") {
-  	req.flash('error', 'Indicate username and password' );
+  if (username === "" || password === "" || age === "" || weight === "") {
+  	req.flash('error', 'Fill all the text boxes, please' );
     res.render("auth/signup", { "message": req.flash("error") });
     return;
   }
@@ -33,7 +39,11 @@ router.post("/signup", (req, res, next) => {
 
     var newUser = User({
       username,
-      password: hashPass
+      password: hashPass,
+      age,
+      weight,
+      allergies,
+      kindOfDiet
     });
 
     newUser.save((err) => {
@@ -42,19 +52,21 @@ router.post("/signup", (req, res, next) => {
         res.render("auth/signup", { message: req.flash('error') });
       } else {
         passport.authenticate("local")(req, res, function () {
-           res.redirect('/classic');
+           res.redirect('/search');
         });
       }
     });
   });
 });
 
+
+
 router.get("/login", (req, res, next) => {
   res.render("auth/login", { "message": req.flash("error") });
 });
 
 router.post("/login", passport.authenticate("local", {
-  successRedirect: "/classic",
+  successRedirect: "/search",
   failureRedirect: "/login",
   failureFlash: true,
   passReqToCallback: true
@@ -64,16 +76,16 @@ router.get("/logout", (req, res) => {
   req.logout();
   delete res.locals.currentUser;
   delete req.session.passport;
-  // delete currentUser and passport properties 
+  // delete currentUser and passport properties
   // becasuse when we calling req.logout() is leaving an empty object inside both properties.
   res.redirect('/');
-  
-  
+
+
 });
 
 router.get("/auth/facebook",          passport.authenticate("facebook"));
 router.get("/auth/facebook/callback", passport.authenticate("facebook", {
-  successRedirect: "/classic",
+  successRedirect: "/search",
   failureRedirect: "/"
 }));
 

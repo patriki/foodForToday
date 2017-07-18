@@ -1,3 +1,5 @@
+/* jshint esversion: 6 */
+
 const express        = require('express');
 const path           = require('path');
 const favicon        = require('serve-favicon');
@@ -13,6 +15,7 @@ const flash          = require("connect-flash");
 const mongoose       = require("mongoose");
 
 const index          = require('./routes/index');
+const user           = require('./routes/user');
 const authController = require('./routes/authController');
 const search          = require('./routes/search');
 
@@ -54,6 +57,7 @@ app.use(auth.setCurrentUser);
 
 app.use('/', authController);
 app.use('/', index);
+app.use('/', user);
 app.use('/', search);
 
 

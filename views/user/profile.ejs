@@ -1,0 +1,23 @@
+<h1>Profile</h1>
+<pre><code>
+	<h2>Hi, <%= user.username %></h2>
+
+</code></pre>
+
+<div class="profile">
+  <div class="panel panel-default">
+    <div class="panel-heading">Information</div>
+    <div class="panel-body">
+
+
+        <div class="form-group">
+          <label for="ageInput">Your age is: <%= user.age %></label><br>
+					<label for="weightInput">Your weight: <%= user.weight %></label><br>
+					<label for="allergiesInput">Allergies: <%= user.allergies %></label><br>
+					<label for="dietInput">Diet: <%= user.kindOfDiet %></label><br>
+        </div>
+        <a href="/update"><button type="submit" class="btn btn-primary btn-block">Update information</button></a>
+
+    </div>
+  </div>
+</div>
