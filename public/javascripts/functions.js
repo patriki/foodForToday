@@ -5,20 +5,18 @@ function showRecipes (response) {
   console.log(response.matches);
   response.matches.forEach((el,index)=> {
     $(".output").append(`
-                  <form action="/classic" method="POST">
                     <div class=recipe id="recipe${index}">
                         <div class="image">
                         <input type="text" class="form-control" id="username" placeholder="Username" name="username">
                             <img src=${el.smallImageUrls[0].replace(/s90$/,"s350")}>
                         </div>
                         <div class="info">
-                            <span class='title'> Recipe: </span> ${el.recipeName} <br>
-                            <span class='title'> Ingredients: </span> ${[...el.ingredients]} <br>
-                            <span class='title'> Rating: ${el.rating}
+                            <span class='title'> Recipe: </span> <span class="name"> ${el.recipeName}</span> <br>
+                            <span class='title'> Ingredients: </span> <span class="ingredients">${[...el.ingredients]}</span> <br>
+                            <span class='title'> Rating:  </span> <span class="rating"> ${el.rating}</span>
+                            <button class='save-favourite'> Save </button>
                         </div>
                     </div>
-
-                  </form>
 
                     `);
 
@@ -48,8 +46,7 @@ function showRecipes (response) {
       url:`http://api.yummly.com/v1/api/recipe/${el.id}?_app_id=7b6372ab&_app_key=446dc1e04dcdedcfe61b2515ec058e88`,
       method:"GET",
       success: function(res) {
-          console.log(res);
-          $(`#recipe${index}`).append(`<span class= 'title'> Sources: ${res.source.sourceRecipeUrl} </span>`);
+          $(`#recipe${index}`).append(`<span class= 'title'> Sources: ${res.source.sourceRecipeUrl} </span>`)
       },
       error:handleError
   })
@@ -72,7 +69,7 @@ function createForms (filter, selector) {
 $.ajax({
     url: `http://api.yummly.com/v1/api/metadata/${filter}?_app_id=7b6372ab&_app_key=446dc1e04dcdedcfe61b2515ec058e88`,
     method:"GET",
-    success: function (response) { displayFilter(response,filter,selector)},
+    success: function (response) { displayFilter(response,filter,selector); setUpUserInfo("allergy"); setUpUserInfo("diet");},
     error: handleError
   });
 
@@ -89,9 +86,7 @@ function displayFilter(response,filter,selector) {
 
   }
 
-function handleError (error) {
-      console.log(error);
-  }
+
 
 function extractMetadata(response) {
     response = response.split(",").filter(function(chunk, index, array){
@@ -103,3 +98,15 @@ function extractMetadata(response) {
     return JSON.parse(response);
 
 }
+
+function setUpUserInfo(filterAttr) {
+    let filterArray=$(`script[${filterAttr}]`).attr(`${filterAttr}`).split(",");
+    filterArray.forEach((el)=> {
+        $(`input[value="${el}"]`).attr("checked",true);
+    })
+
+}
+
+function handleError (error) {
+      console.log(error);
+  }

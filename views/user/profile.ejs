@@ -15,7 +15,7 @@
           <label for="ageInput">Your age is: <%= user.age %></label><br>
 					<label for="weightInput">Your weight: <%= user.weight %></label><br>
 					<label for="allergiesInput">Allergies: 
-            <% if (user.allergies.length > 0) {
+            <% if ( user.allergies && user.allergies.length > 0) {
             %> <ul> <% user.allergies.forEach((el)=> { %>
                   <li> <%= el.replace(/[^A-Za-z-]/g,"") %> </li>
                     <% }) %>
@@ -25,7 +25,7 @@
             <% }%>  
           </label><br>
 					<label for="dietInput">Diet: 
-            <% if (user.kindOfDiet.length > 0) {
+            <% if ( user.kindOfDiet && user.kindOfDiet.length > 0) {
             %> <ul> <% user.kindOfDiet.forEach((el)=> { %>
                   <li> <%= el.replace(/%20/g,' ').replace(/[^A-Za-z\s]/g,"") %> </li>
                     <% }) %>

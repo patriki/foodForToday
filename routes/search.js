@@ -15,16 +15,22 @@ var auth    = require('../helpers/auth');
 
 router.get('/search', auth.checkLoggedIn('You must be login', '/login'), function(req, res, next) {
 	// console.log(req.user);
-  res.render('search/search', { user: JSON.stringify(req.user) });
+  res.render('search/search', { user: req.user });
 });
 
 router.get('/surprise', auth.checkLoggedIn('You must be login', '/login'), function(req, res, next) {
 	// console.log(req.user);
-  res.render('search/surprise', { user: JSON.stringify(req.user) });
+  res.render('search/surprise', { user: req.user });
 });
 
 router.get('/classic', auth.checkLoggedIn('You must be login', '/login'), function(req, res, next) {
-  res.render('search/classic', {scripts: ['functions.js','classic.js']})
+  res.render('search/classic', {user: req.user, scripts: ['functions.js','favourite.js','classic.js']})
+});
+
+router.post('/classic/favourite', auth.checkLoggedIn('You must be login', '/login'), function(req, res, next) {
+  console.log(req.body);
+  console.log(req.body.recipeName);
+  res.status(200).json({ ok: true})
 });
 
 module.exports = router;
