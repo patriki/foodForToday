@@ -1,25 +1,28 @@
 $(document).ready(()=>{
-    console.log("hago");
-    console.log($('.save-favourite'));
 
 $('.output').on("click", '.save-favourite',(event)=> {
-    $(event.target).removeClass("save-favourite").addClass("delete-favorite");
+    $(event.target).removeClass("save-favourite").addClass("delete-favourite");
     console.log("Llegué");
-    console.log($(event.target).siblings(".name"));
+    console.log();
     
 
-      var obj = {
-        title: "hola",
+      var recipe = {
+         recipeImage: "image",
+         recipeName: "name",
+         recipeIngredients: "ingredient",
+         recipeRating: "stars",
+         recipeLink: "link"
       };
 
 
       $.ajax({
         url: "http://localhost:3000/classic/favourite",
-        type: "POST",
-        data: JSON.stringify(obj),
+        method: "POST",
+        data: JSON.stringify(recipe),
         contentType: "application/json",
-        success: function(data) {
-          console.log('success --> data :', data);
+        dataType:'json',
+        success: function(res) {
+          console.log('success --> data :', res);
 
         },
         error: handleError

@@ -28,7 +28,9 @@ router.get('/classic', auth.checkLoggedIn('You must be login', '/login'), functi
 });
 
 router.post('/classic/favourite', auth.checkLoggedIn('You must be login', '/login'), function(req, res, next) {
-  console.log(req);
+  console.log(req.body);
+  console.log(req.body.recipeName);
+  res.status(200).json({ ok: true})
 });
 
 module.exports = router;
