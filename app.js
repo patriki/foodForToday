@@ -17,7 +17,8 @@ const mongoose       = require("mongoose");
 const index          = require('./routes/index');
 const user           = require('./routes/user');
 const authController = require('./routes/authController');
-const search          = require('./routes/search');
+const search         = require('./routes/search');
+const favourite      = require('./routes/favourite');
 
 let app = express();
 
@@ -59,6 +60,7 @@ app.use('/', authController);
 app.use('/', index);
 app.use('/', user);
 app.use('/', search);
+app.use('/', favourite);
 
 
 // catch 404 and forward to error handler

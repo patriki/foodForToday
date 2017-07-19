@@ -20,32 +20,12 @@ function showRecipes (response) {
                     `);
 
 
-// function showRecipes (response) {
-//   $(".output").html('');
-//   console.log(response.matches);
-//   response.matches.forEach((el,index)=> {
-//     $(".output").append(`
-//                     <div class=recipe id="recipe${index}">
-//                         <div class="image">
-//                             <img src=${el.smallImageUrls[0].replace(/s90$/,"s350")}>
-//                         </div>
-//                         <div class="info">
-//                             <span class='title'> Recipe: </span> ${el.recipeName} <br>
-//                             <span class='title'> Ingredients: </span> ${[...el.ingredients]} <br>
-//                             <span class='title'> Rating: ${el.rating}
-//                         </div>
-//                     </div>
-//
-//                     `);
-
-
-
 
   $.ajax( {
       url:`http://api.yummly.com/v1/api/recipe/${el.id}?_app_id=7b6372ab&_app_key=446dc1e04dcdedcfe61b2515ec058e88`,
       method:"GET",
       success: function(res) {
-          $(`#recipe${index}`).append(`<span class= 'title'> Sources: ${res.source.sourceRecipeUrl} </span>`)
+          $(`#recipe${index} > .info`).append(`<span class= 'title'> Sources: </span> <span class="link"> ${res.source.sourceRecipeUrl} </span>`)
       },
       error:handleError
   })

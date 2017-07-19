@@ -2,16 +2,14 @@ $(document).ready(()=>{
 
 $('.output').on("click", '.save-favourite',(event)=> {
     $(event.target).removeClass("save-favourite").addClass("delete-favourite");
-    console.log("Llegué");
-    console.log();
     
 
       var recipe = {
          recipeImage: "image",
-         recipeName: "name",
-         recipeIngredients: "ingredient",
-         recipeRating: "stars",
-         recipeLink: "link"
+         recipeName: $(event.target).siblings(".name").html(),
+         recipeIngredients: $(event.target).siblings(".ingredients").html(),
+         recipeRating:$(event.target).siblings(".rating").html(),
+         recipeLink: $(event.target).siblings(".link").html()
       };
 
 

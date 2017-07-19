@@ -8,7 +8,7 @@ const userSchema = new Schema({
     weight: Number,
     allergies: Array,
     kindOfDiet: Array,
-	  favorites: [{ type: Schema.Types.ObjectId, ref: 'Recipe' }]
+	favourites: [{ type: Schema.Types.ObjectId, ref: 'Recipe' }]
 	}, {
   	timestamps: { createdAt: "created_at", updatedAt: "updated_at" }
 	}

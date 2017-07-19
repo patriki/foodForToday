@@ -3,6 +3,7 @@
 const express  = require('express');
 const bcrypt   = require("bcrypt");
 const User     = require("../models/user");
+const Recipe     = require("../models/recipe");
 const passport = require("../helpers/passport");
 
 const router     = express.Router();
@@ -27,10 +28,5 @@ router.get('/classic', auth.checkLoggedIn('You must be login', '/login'), functi
   res.render('search/classic', {user: req.user, scripts: ['functions.js','favourite.js','classic.js']})
 });
 
-router.post('/classic/favourite', auth.checkLoggedIn('You must be login', '/login'), function(req, res, next) {
-  console.log(req.body);
-  console.log(req.body.recipeName);
-  res.status(200).json({ ok: true})
-});
 
 module.exports = router;
