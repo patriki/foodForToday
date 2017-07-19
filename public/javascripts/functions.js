@@ -7,8 +7,7 @@ function showRecipes (response) {
     $(".output").append(`
                     <div class=recipe id="recipe${index}">
                         <div class="image">
-                        <input type="text" class="form-control" id="username" placeholder="Username" name="username">
-                            <img src=${el.smallImageUrls[0].replace(/s90$/,"s350")}>
+                            <img src=${el.imageUrlsBySize[90].replace(/s90-c$/,"s350")}>
                         </div>
                         <div class="info">
                             <span class='title'> Recipe: </span> <span class="name"> ${el.recipeName}</span> <br>
