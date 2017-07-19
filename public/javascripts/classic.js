@@ -1,3 +1,5 @@
+/* jshint esversion: 6 */
+
 $(document).ready( ()=> {
     //Create forms
 
@@ -38,4 +40,3 @@ $(document).ready( ()=> {
 
 
 });
-

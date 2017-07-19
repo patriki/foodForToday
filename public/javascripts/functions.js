@@ -5,8 +5,10 @@ function showRecipes (response) {
   console.log(response.matches);
   response.matches.forEach((el,index)=> {
     $(".output").append(`
+                  <form action="/classic" method="POST">
                     <div class=recipe id="recipe${index}">
                         <div class="image">
+                        <input type="text" class="form-control" id="username" placeholder="Username" name="username">
                             <img src=${el.smallImageUrls[0].replace(/s90$/,"s350")}>
                         </div>
                         <div class="info">
@@ -14,9 +16,32 @@ function showRecipes (response) {
                             <span class='title'> Ingredients: </span> ${[...el.ingredients]} <br>
                             <span class='title'> Rating: ${el.rating}
                         </div>
-
                     </div>
-                    `)
+
+                  </form>
+
+                    `);
+
+
+// function showRecipes (response) {
+//   $(".output").html('');
+//   console.log(response.matches);
+//   response.matches.forEach((el,index)=> {
+//     $(".output").append(`
+//                     <div class=recipe id="recipe${index}">
+//                         <div class="image">
+//                             <img src=${el.smallImageUrls[0].replace(/s90$/,"s350")}>
+//                         </div>
+//                         <div class="info">
+//                             <span class='title'> Recipe: </span> ${el.recipeName} <br>
+//                             <span class='title'> Ingredients: </span> ${[...el.ingredients]} <br>
+//                             <span class='title'> Rating: ${el.rating}
+//                         </div>
+//                     </div>
+//
+//                     `);
+
+
 
 
   $.ajax( {
@@ -24,7 +49,7 @@ function showRecipes (response) {
       method:"GET",
       success: function(res) {
           console.log(res);
-          $(`#recipe${index}`).append(`<span class= 'title'> Sources: ${res.source.sourceRecipeUrl} </span>`)
+          $(`#recipe${index}`).append(`<span class= 'title'> Sources: ${res.source.sourceRecipeUrl} </span>`);
       },
       error:handleError
   })
@@ -55,12 +80,12 @@ $.ajax({
 
 function displayFilter(response,filter,selector) {
       let jsonDocs= extractMetadata(response);
-      $(`.${filter}`).append(` <label for="${filter}Input">${filter}</label><br>`)
+      $(`.${filter}`).append(` <label for="${filter}Input">${filter}</label><br>`);
       jsonDocs.forEach ((el)=> {
 
-          $(`.${filter}`).append(`<input type="checkbox" name="each${filter}" value=${el.searchValue.replace(" ","%20")}>${el[selector]}`)
+          $(`.${filter}`).append(`<input type="checkbox" name="each${filter}" value=${el.searchValue.replace(" ","%20")}>${el[selector]}`);
 
-      })
+      });
 
   }
 
