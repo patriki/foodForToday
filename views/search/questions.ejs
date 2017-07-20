@@ -1,0 +1,25 @@
+<div class="background-darkener">
+ <% var counter=1 %>   
+<% finalQuestions.forEach( function(question)  { %>
+    <div class="question question<%= counter %>"> 
+    <div class="popup">
+    <div class="title"> <%= question.title %> </div>
+    <form> 
+        <% question.options.forEach( function(option) { %> 
+        <input type="radio" name="match" value="<%= option.translate %>"> 
+		<label for="match_1"> <%= option.answer %> </label>
+
+        <% }) %> 
+        
+        <button class="next"> Next </button>
+    </form>
+    </div>
+    </div>
+    <% counter++
+        }) %>
+
+
+
+</div>
+
+<div class="output"></div>

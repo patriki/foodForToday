@@ -1,0 +1,23 @@
+
+.background-darkener{
+    background: #000;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.popup {
+display:inherit;
+position: fixed;
+top: 50%;
+left: 50%;
+background-color:white;
+-webkit-transform: translate(-50%, -50%);
+-moz-transform: translate(-50%, -50%);
+-ms-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);
+}
