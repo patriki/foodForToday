@@ -9,17 +9,40 @@ $(document).ready( ()=> {
     createForms('course','name');
 
 
-    //Make request
-    $("#ingredients").on("change paste submit", (event)=> {
-        event.preventDefault();
-        let myIngredient= $("#ingredients").val().toLowerCase();
-    $(".ingredient").append(`<input type="checkbox" name="eachIngredient" value=${myIngredient} checked>${myIngredient}<br>`);
+    //dropdown menus:
+    $('.category').on('click', function(){
+      var id = $(this).attr('id');
+      var idName = id.split('-')[1];
 
-    })
+      if ($(this).hasClass("active")) {
+        $(this).removeClass('active');
+        $('#' + idName).removeClass('active');
+      } else {
+        $('.category').removeClass('active');
+        $('.filter-group').removeClass('active');
+        $(this).addClass('active');
+        $('#' + idName).addClass('active');
+      }
+
+    });
+
+
+    //Make request
+    $("#ingredientText").on("change paste submit", (event)=> {
+        event.preventDefault();
+        let myIngredient= $("#ingredientText").val().toLowerCase();
+    $(".ingredient").append(`<label class="checkMenu">
+                                <input type="checkbox" name="eachIngredient" value=${myIngredient} checked>
+                                <div class="eachCheck">${myIngredient}
+                                </div>
+                            </label><br>`);
+
+    });
+
 
     $('.form-filters').on("submit", (e)=> {
         e.preventDefault();
-    })
+    });
 
 
     $('.form-filters').children().on("change checked", ()=> {
@@ -36,7 +59,7 @@ $(document).ready( ()=> {
         success: showRecipes,
         error: handleError
     });
-})
+});
 
 
 });

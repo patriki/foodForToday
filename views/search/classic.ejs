@@ -1,25 +1,50 @@
 <h1>  Filters  </h1>
-<form class="form-filters" action="index.html" method="post">
-
-    <div class="diet">
+<div class="filter-container">
+  <div class="filter-categories">
+    <ul>
+        <li id="btn-diet" class="category">
+    		<span class="y-pref" data-icon=""></span>
+    		<p>Diet</p>
+    	</li>
+      <li id="btn-allergy" class="category">
+        <span class="y-pref" data-icon=""></span>
+        <p>Allergy</p>
+      </li>
+      <li id="btn-cuisine" class="category">
+        <span class="y-pref" data-icon=""></span>
+        <p>Cuisine</p>
+      </li>
+      <li id="btn-course" class="category">
+        <span class="y-pref" data-icon=""></span>
+        <p>Course</p>
+      </li>
+      <li id="btn-ingredients" class="category">
+        <span class="y-pref" data-icon=""></span>
+        <p>Ingredients</p>
+      </li>
+    </ul>
+  </div>
+<div class="show-filters">
+  <form class="form-filters" action="index.html" method="post">
+    <div id="diet" class="filter-group diet">
     </div>
 
-    <div class="allergy">
+    <div id="allergy" class="filter-group allergy">
     </div>
 
-    <div class="cuisine">
+    <div id="cuisine" class="filter-group cuisine">
     </div>
 
-    <div class="course">
+    <div id="course" class="filter-group course">
     </div>
 
-    <label for="ingredients">Ingredients:</label>
-    <input id="ingredients" type="text" name="ingredients">
-    <div class="ingredient">
+    <div id="ingredients" class="filter-group ingredients">
+      <label class="filter-group-title" for="ingredients">Ingredients:</label>
+      <input id="ingredientText" class="textBoxStyle" type="text" name="ingredients">
+      <div class="ingredient"></div>
     </div>
-
-</form>
-
-<div class="output">
-    
+  </form>
+  </div>
 </div>
+
+<div class="output"></div>

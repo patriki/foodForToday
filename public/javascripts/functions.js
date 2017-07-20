@@ -5,40 +5,19 @@ function showRecipes (response) {
   console.log(response.matches);
   response.matches.forEach((el,index)=> {
     $(".output").append(`
-                    <div class=recipe id="recipe${index}">
+                    <article class=recipe id="recipe${index}">
                         <div class="image">
                             <img src=${el.imageUrlsBySize[90].replace(/s90-c$/,"s350")}>
                         </div>
-                        <div class="info">
-                            <span class='title'> Recipe: </span> <span class="name"> ${el.recipeName}</span> <br>
+                        <div class="recipe-info">
+                            <!--<span class='title'> Recipe: </span>--> <span class="name recipe-title"> ${el.recipeName}</span> <br>
                             <span class='title'> Ingredients: </span> <span class="ingredients">${[...el.ingredients]}</span> <br>
                             <span class='title'> Rating:  </span> <span class="rating"> ${el.rating}</span>
                             <button class='save-favourite'> Save </button>
                         </div>
-                    </div>
+                    </article>
 
                     `);
-
-
-// function showRecipes (response) {
-//   $(".output").html('');
-//   console.log(response.matches);
-//   response.matches.forEach((el,index)=> {
-//     $(".output").append(`
-//                     <div class=recipe id="recipe${index}">
-//                         <div class="image">
-//                             <img src=${el.smallImageUrls[0].replace(/s90$/,"s350")}>
-//                         </div>
-//                         <div class="info">
-//                             <span class='title'> Recipe: </span> ${el.recipeName} <br>
-//                             <span class='title'> Ingredients: </span> ${[...el.ingredients]} <br>
-//                             <span class='title'> Rating: ${el.rating}
-//                         </div>
-//                     </div>
-//
-//                     `);
-
-
 
 
   $.ajax( {
@@ -76,10 +55,14 @@ $.ajax({
 
 function displayFilter(response,filter,selector) {
       let jsonDocs= extractMetadata(response);
-      $(`.${filter}`).append(` <label for="${filter}Input">${filter}</label><br>`);
+      $(`.${filter}`).append(` <label class="filter-group-title" for="${filter}Input">${filter}</label><br>`);
       jsonDocs.forEach ((el)=> {
 
-          $(`.${filter}`).append(`<input type="checkbox" name="each${filter}" value=${el.searchValue.replace(" ","%20")}>${el[selector]}`);
+          $(`.${filter}`).append(`<label class="checkMenu">
+                                    <input type="checkbox" name="each${filter}" value=${el.searchValue.replace(" ","%20")}>
+                                        <div class="eachCheck">${el[selector]}
+                                        </div>
+                                  </label>`);
 
       });
 

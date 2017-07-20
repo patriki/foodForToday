@@ -5,7 +5,7 @@ var auth    = require('../helpers/auth');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Food for today' });
 });
 
 
