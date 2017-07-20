@@ -1,5 +1,56 @@
 /* jshint esversion: 6 */
 
+function modifyFavourite(modification, reverse) {
+  $('.output').on("click", `.${modification}-favourite`,(event)=> {
+    $(event.target).removeClass(`${modification}-favourite`).addClass(`${reverse}-favourite`).text(reverse);
+    
+
+      var recipe = {
+         recipeId:$(event.target).siblings(".id").html(),
+         recipeImage: "image",
+         recipeName: $(event.target).siblings(".name").html(),
+         recipeIngredients: $(event.target).siblings(".ingredients").html(),
+         recipeRating:$(event.target).siblings(".rating").html(),
+         recipeLink: $(event.target).siblings(".link").html()
+      };
+
+
+      $.ajax({
+        url: `http://localhost:3000/${modification}-favourite`,
+        method: "POST",
+        data: JSON.stringify(recipe),
+        contentType: "application/json",
+        dataType:'json',
+        success: function(res) {
+          console.log('success --> data :', res);
+
+        },
+        error: handleError
+      
+      });
+
+    });  
+
+}
+
+function getRecipesBySearch() {
+    myDiet=getParameters('Diet');
+    myCuisine=getParameters('Cuisine');
+    myCourse=getParameters('Course');
+    myAllergy=getParameters('Allergy');
+    myIngredients=getParameters('Ingredient');
+
+
+    $.ajax({
+        url: `http://api.yummly.com/v1/api/recipes?_app_id=7b6372ab&_app_key=446dc1e04dcdedcfe61b2515ec058e88&${myDiet}${myCuisine}${myAllergy}${myCourse}${myIngredients}requirePictures=true`,
+        method: "GET",
+        success: showRecipes,
+        error: handleError
+    });
+}
+
+
+
 function showRecipes (response) {
   $(".output").html('');
   console.log(response.matches);
@@ -10,6 +61,7 @@ function showRecipes (response) {
                             <img src=${el.imageUrlsBySize[90].replace(/s90-c$/,"s350")}>
                         </div>
                         <div class="info">
+                            <span class="id" style="display:none">${el.id}</span>
                             <span class='title'> Recipe: </span> <span class="name"> ${el.recipeName}</span> <br>
                             <span class='title'> Ingredients: </span> <span class="ingredients">${[...el.ingredients]}</span> <br>
                             <span class='title'> Rating:  </span> <span class="rating"> ${el.rating}</span>

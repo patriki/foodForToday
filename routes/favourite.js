@@ -11,8 +11,9 @@ const bcryptSalt = 10;
 var auth    = require('../helpers/auth');
 
 
-router.post('/classic/favourite', auth.checkLoggedIn('You must be login', '/login'), function(req, res, next) {
+router.post('/save-favourite', auth.checkLoggedIn('You must be login', '/login'), function(req, res, next) {
   const myRecipe= Recipe({
+    yummlyid:req.body.recipeId,
     name: req.body.recipeName,
     image: req.body.recipeImage,
     link: req.body.recipeLink,
@@ -21,7 +22,7 @@ router.post('/classic/favourite', auth.checkLoggedIn('You must be login', '/logi
   });
 
   
-  Recipe.findOne({ name: req.body.recipeName }, "name", (err, recipe) => {
+  Recipe.findOne({ yummlyid:req.body.recipeId }, "yummlyid", (err, recipe) => {
     if(err) {return res.send({ error: 'Something failed!' })}
     if (recipe === null) {
         myRecipe.save((err) => {
@@ -35,8 +36,7 @@ router.post('/classic/favourite', auth.checkLoggedIn('You must be login', '/logi
     }
  });
  
-   const username= req.session.passport.user.username;
-   User.findOne({ username }, (err, user) => {
+   User.findOne({ username: req.user.username}, (err, user) => {
        if(err) { res.send({ error: 'Something failed!' });}
        user.favourites.push(myRecipe);
        user.save( (err) => { 
@@ -51,14 +51,31 @@ router.post('/classic/favourite', auth.checkLoggedIn('You must be login', '/logi
 
 });
 
+router.post('/delete-favourite', auth.checkLoggedIn('You must be login', '/login'), function(req, res, next) {
+    console.log(req.body.recipeId)
+  Recipe.findOne({ yummlyid: req.body.recipeId }, "yummlyid", (err, recipe) => {
+    if(err) {return res.send({ error: 'Something failed!' })}
+    
+    User.findOneAndUpdate({ username:req.user.username }, {$pull: {favourites: recipe._id }}).
+        exec((err, user) => {
+            if(err) { res.send({ error: 'Something failed!' });}
+            res.status(200).json({ ok: true});
+           })
+
+    });
+ 
+  
+  
+
+});
+
 router.get('/profile/favourites', auth.checkLoggedIn('You must be login', '/login'), function(req, res, next) {
    User.
         findOne({ username:req.session.passport.user.username }).
         populate('favourites').
         exec(function (err, user) {
             if (err) return res.send({ error: 'Something failed!' });
-            console.log('My favourite is %s', user.favourites);
-            res.render("user/favourites", {favourites: user.favourites})
+            res.render("user/favourites", {favourites: user.favourites, scripts:["functions.js", "delete.js"]})
 
         });
       

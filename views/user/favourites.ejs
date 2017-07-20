@@ -1,5 +1,12 @@
-<ul>
+
+<div class="favs">
+<ul class="list-favs">
   <% favourites.forEach((recipe) =>{ %>
-    <li><%= recipe.name %> - <%= recipe.rating %></li>
+    <li class="favourite"> 
+      <span class="id"><%= recipe.yummlyid %></span> 
+      <span class="rating"><%= recipe.rating %></span>
+      <button class="delete">Delete </button>
+    </li>
   <% }) %>
 </ul>
+</div>
