@@ -1,8 +1,8 @@
 
 let currentQuestion=1;
-const totalQuestions=5;
+const totalQuestions=4;
 
-const answers={};
+let answers="";
 
 $(document).ready(()=>{
   
@@ -12,7 +12,8 @@ $(document).ready(()=>{
 
     $("button").on("click", (e)=> {
         e.preventDefault();
-        answers[`question${currentQuestion}`]=$(`.question${currentQuestion} input[type='radio']:checked`).val();
+        answers+=$(`.question${currentQuestion} input[type='radio']:checked`).val();
+        console.log(answers);
 
         $(`.question${currentQuestion}`).fadeOut( function () {
                 if (currentQuestion == totalQuestions) {
@@ -21,7 +22,7 @@ $(document).ready(()=>{
                     $(".background-darkener").hide();
                     
                      $.ajax({
-                        url: `http://api.yummly.com/v1/api/recipes?_app_id=7b6372ab&_app_key=446dc1e04dcdedcfe61b2515ec058e88&q=onion&requirePictures=true`,
+                        url: `http://api.yummly.com/v1/api/recipes?_app_id=7b6372ab&_app_key=446dc1e04dcdedcfe61b2515ec058e88&${answers}&requirePictures=true`,
                         method: "GET",
                         success: showRecipes,
                         error: handleError

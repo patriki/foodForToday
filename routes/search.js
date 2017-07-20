@@ -19,10 +19,6 @@ router.get('/search', auth.checkLoggedIn('You must be login', '/login'), functio
   res.render('search/search', { user: req.user });
 });
 
-router.get('/surprise', auth.checkLoggedIn('You must be login', '/login'), function(req, res, next) {
-	// console.log(req.user);
-  res.render('search/surprise', { scripts: ["functions.js","surprise.js"], stylesheets:["questions.css"] });
-});
                                                                             
 router.get('/classic', auth.checkLoggedIn('You must be login', '/login'), function(req, res, next) {
   res.render('search/classic', {user: req.user, scripts: ['functions.js','favourite.js','classic.js']})
