@@ -4,13 +4,14 @@ function modifyFavourite(modification, reverse) {
   $('.output').on("click", `.${modification}-favourite`,(event)=> {
     $(event.target).removeClass(`${modification}-favourite`).addClass(`${reverse}-favourite`).attr("src", `/images/${reverse}.png`);
 
+      var recipeid= $(event.target).parents("article").attr("id");
 
       var recipe = {
-         recipeId:$(event.target).siblings(".id").html(),
-         recipeImage: "image",
-         recipeName: $(event.target).siblings(".name").html(),
-         recipeIngredients: $(event.target).siblings(".ingredients").html(),
-         recipeRating:$(event.target).siblings(".rating").html(),
+         recipeId:$(`#${recipeid} .id`).html(),
+         recipeImage: $(`#${recipeid} .imagefordb`).attr("src"),
+         recipeName: $(`#${recipeid} .name`).html(),
+         recipeIngredients: $(`#${recipeid} .ingredients`).html(),
+         recipeRating:$(`#${recipeid} .rating`).html(),
          recipeLink: $(event.target).siblings(".link").html()
       };
 
@@ -58,7 +59,7 @@ function showRecipes (response) {
     $(".output").append(`
                     <article class="flex-item recipe" id="recipe${index}">
                         <div class="image">
-                            <img src=${el.imageUrlsBySize[90].replace(/s90-c$/,"s350")}>
+                            <img class="imagefordb" src=${el.imageUrlsBySize[90].replace(/s90-c$/,"s350")}>
                         </div>
                         <div class="recipe-info">
                             <span class="id" style="display:none">${el.id}</span>

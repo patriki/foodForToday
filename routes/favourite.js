@@ -20,8 +20,8 @@ router.post('/save-favourite', auth.checkLoggedIn('You must be login', '/login')
     ingredients: req.body.recipeIngredients,
     rating: req.body.recipeRating
   });
+console.log(myRecipe);
 
-  
   Recipe.findOne({ yummlyid:req.body.recipeId }, "yummlyid", (err, recipe) => {
     if(err) {return res.send({ error: 'Something failed!' })}
     if (recipe === null) {
@@ -35,19 +35,19 @@ router.post('/save-favourite', auth.checkLoggedIn('You must be login', '/login')
 
     }
  });
- 
+
    User.findOne({ username: req.user.username}, (err, user) => {
        if(err) { res.send({ error: 'Something failed!' });}
        user.favourites.push(myRecipe);
-       user.save( (err) => { 
+       user.save( (err) => {
            if (err) {return res.send({ error: 'Something failed!' })};
                 res.status(200).json({ ok: true});
            })
 
-      
+
         });
-  
-  
+
+
 
 });
 
@@ -55,7 +55,7 @@ router.post('/delete-favourite', auth.checkLoggedIn('You must be login', '/login
     console.log(req.body.recipeId)
   Recipe.findOne({ yummlyid: req.body.recipeId }, "yummlyid", (err, recipe) => {
     if(err) {return res.send({ error: 'Something failed!' })}
-    
+
     User.findOneAndUpdate({ username:req.user.username }, {$pull: {favourites: recipe._id }}).
         exec((err, user) => {
             if(err) { res.send({ error: 'Something failed!' });}
@@ -63,9 +63,9 @@ router.post('/delete-favourite', auth.checkLoggedIn('You must be login', '/login
            })
 
     });
- 
-  
-  
+
+
+
 
 });
 
@@ -78,7 +78,7 @@ router.get('/profile/favourites', auth.checkLoggedIn('You must be login', '/logi
             res.render("user/favourites", {favourites: user.favourites, scripts:["functions.js", "delete.js"]})
 
         });
-      
+
 });
 
 
