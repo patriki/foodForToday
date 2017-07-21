@@ -16,8 +16,8 @@
 
       <ul class="nav navbar-nav navbar-right">
         <% if (isUserLoggedIn) { %>
+          <p class="navbar-text">Hola <%= currentUser.user.username %></p>
           <li><a href="/search">Search</a></li>
-          <p class="navbar-text">Signed in as <%= currentUser.user.username %></p>
           <li><a href="/logout">Logout</a></li>
         <% } else { %>
           <li><a href="/signup">Signup</a></li>

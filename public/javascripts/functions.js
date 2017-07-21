@@ -56,16 +56,21 @@ function showRecipes (response) {
   console.log(response.matches);
   response.matches.forEach((el,index)=> {
     $(".output").append(`
-                    <article class=recipe id="recipe${index}">
+                    <article class="flex-item recipe" id="recipe${index}">
                         <div class="image">
                             <img src=${el.imageUrlsBySize[90].replace(/s90-c$/,"s350")}>
                         </div>
-                        <div class="info">
+                        <div class="recipe-info">
                             <span class="id" style="display:none">${el.id}</span>
-                            <span class='title'> Recipe: </span> <span class="name"> ${el.recipeName}</span> <br>
-                            <span class='title'> Ingredients: </span> <span class="ingredients">${[...el.ingredients]}</span> <br>
-                            <span class='title'> Rating:  </span> <span class="rating"> ${el.rating}</span>
-                            <button class='save-favourite'> Save </button>
+                            <!--<span class='title'> Recipe: </span>-->
+                            <div class="recipe-sup">
+                              <div class="recipe-title"><span class="name"> ${el.recipeName}</span></div>
+                              <div class="recipe-fav"><button class='recipe-btn save-favourite'> Save </button></div>
+                            </div>
+                            <div class="recipe-inf">
+                              <div class="recipe-ingredients"><span class='title'> Ingredients: </span> <br><span class="ingredients">${[...el.ingredients]}</span> </div><br>
+                              <div class="recipe-rating"><!--<span class='title'> Rating:  </span>--><span class="rating"> ${el.rating}</span></div>
+                            </div>
                         </div>
                     </article>
 
