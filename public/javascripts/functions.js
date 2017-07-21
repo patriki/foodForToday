@@ -59,7 +59,9 @@ function showRecipes (response) {
     $(".output").append(`
                     <article class="flex-item recipe" id="recipe${index}">
                         <div class="image">
-                            <img class="imagefordb" src=${el.imageUrlsBySize[90].replace(/s90-c$/,"s350")}>
+                            <a class="source" href="">
+                            <h3 class="img__description">Go to the directions!</h3>
+                            <img class="imagefordb" src=${el.imageUrlsBySize[90].replace(/s90-c$/,"s350")}></a>
                         </div>
                         <div class="recipe-info">
                             <span class="id" style="display:none">${el.id}</span>
@@ -83,7 +85,7 @@ function showRecipes (response) {
       url:`http://api.yummly.com/v1/api/recipe/${el.id}?_app_id=7b6372ab&_app_key=446dc1e04dcdedcfe61b2515ec058e88`,
       method:"GET",
       success: function(res) {
-          $(`#recipe${index} > .info`).append(`<span class= 'title'> Sources: </span> <span class="link"> ${res.source.sourceRecipeUrl} </span>`)
+          $(`#recipe${index} .source`).attr("href",`${res.source.sourceRecipeUrl}`)
       },
       error:handleError
   })
