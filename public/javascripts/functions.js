@@ -90,6 +90,22 @@ function showRecipes (response) {
       error:handleError
   })
 
+  $.ajax( {
+      url:`http://localhost:3000/classic`,
+      method:"POST",
+      data: JSON.stringify({recipeId: el.id}),
+      contentType: "application/json",
+      dataType:'json',
+      success: function(res) {
+          console.log(res);
+          if(res.ok) 
+         {$(`#recipe${index} .save-favourite`).removeClass(`save-favourite`).addClass(`delete-favourite`).attr("src", `/images/delete.png`)}
+          
+          
+      },
+      error:handleError
+  })
+
   })
 
 

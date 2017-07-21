@@ -25,29 +25,39 @@ console.log(myRecipe);
   Recipe.findOne({ yummlyid:req.body.recipeId }, "yummlyid", (err, recipe) => {
     if(err) {return res.send({ error: 'Something failed!' })}
     if (recipe === null) {
-        myRecipe.save((err) => {
+        Recipe.create((err,newRecipe) => {
             if (err) {
                 return res.send({ error: 'Something failed!' });
             } else {
+
                 console.log("Receta creada");
-            }
+                User.findOne({ username: req.user.username}, (err, user) => {
+                    if(err) { res.send({ error: 'Something failed!' });}
+                    user.favourites.push(newRecipe);
+                    user.save( (err) => {
+                        if (err) {return res.send({ error: 'Something failed!' })};
+                        res.status(200).json({ ok: true});
+                         })
+
+
+                    });
+                }
+    })
+       } else {
+          User.findOne({ username: req.user.username}, (err, user) => {
+                    if(err) { res.send({ error: 'Something failed!' });}
+                    user.favourites.push(recipe);
+                    user.save( (err) => {
+                        if (err) {return res.send({ error: 'Something failed!' })};
+                        res.status(200).json({ ok: true});
+                         }) 
+
+                    });
+
+        }
+   
+
         });
-
-    }
- });
-
-   User.findOne({ username: req.user.username}, (err, user) => {
-       if(err) { res.send({ error: 'Something failed!' });}
-       user.favourites.push(myRecipe);
-       user.save( (err) => {
-           if (err) {return res.send({ error: 'Something failed!' })};
-                res.status(200).json({ ok: true});
-           })
-
-
-        });
-
-
 
 });
 
