@@ -255,7 +255,7 @@ img {
   font-weight: 100;
   letter-spacing: 1px;
   float: left;
-  width: 38rem;
+  width: 36rem;
   margin: 0 30px 0 0;
 }
 .recipe-rating {
@@ -275,14 +275,11 @@ img {
   color: #accab6;
   font-weight: 200;
   letter-spacing: 1px;
-  width: 355px;
+  width: 340px;
   float: left;
   margin: 0 50px 0 0;
 }
 
-.recipe-btn{
-  background-image: url(https://image.flaticon.com/icons/svg/291/291212.svg);  
-}
 
 
 /********************************************************/

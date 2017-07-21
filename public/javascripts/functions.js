@@ -2,7 +2,7 @@
 
 function modifyFavourite(modification, reverse) {
   $('.output').on("click", `.${modification}-favourite`,(event)=> {
-    $(event.target).removeClass(`${modification}-favourite`).addClass(`${reverse}-favourite`).text(reverse);
+    $(event.target).removeClass(`${modification}-favourite`).addClass(`${reverse}-favourite`).attr("src", `/images/${reverse}.png`);
 
 
       var recipe = {
@@ -65,7 +65,7 @@ function showRecipes (response) {
                             <!--<span class='title'> Recipe: </span>-->
                             <div class="recipe-sup">
                               <div class="recipe-title"><span class="name"> ${el.recipeName}</span></div>
-                              <div class="recipe-fav"><button class='recipe-btn save-favourite'> Save </button></div>
+                              <div class="recipe-fav"><img src="/images/save.png" class='recipe-btn save-favourite'></div>
                             </div>
                             <div class="recipe-inf">
                               <div class="recipe-ingredients"><span class='title'> Ingredients: </span> <br><span class="ingredients">${[...el.ingredients]}</span> </div><br>
