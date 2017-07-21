@@ -30,7 +30,7 @@ router.get('/questions', auth.checkLoggedIn('You must be login', '/login'), func
                        
                         const finalQuestions=[questionsFlavour[0], questionsIngredients[0], questionsTime[0], questionsCuisine[0]];
 
-                        res.render('search/questions', { finalQuestions, scripts: ["functions.js","questions.js", "favourite.js"], stylesheets:["questions.css"] });
+                        res.render('search/questions', { finalQuestions, user: req.user, scripts: ["functions.js","questions.js", "favourite.js"], stylesheets:["questions.css"] });
                         
             
                     }); 

@@ -122,7 +122,6 @@ function displayFilter(response,filter,selector) {
   }
 
 
-
 function extractMetadata(response) {
     response = response.split(",").filter(function(chunk, index, array){
         return index != 0
@@ -140,6 +139,15 @@ function setUpUserInfo(filterAttr) {
         $(`input[value="${el}"]`).attr("checked",true);
     })
 
+}
+
+function setUpUserInfoInQuestions(filterAttr) {
+    let myFilter='';
+    let filterArray=$(`script[${filterAttr.toLowerCase()}]`).attr(`${filterAttr.toLowerCase()}`).split(",");
+    filterArray.forEach((el)=> {
+         myFilter+=`allowed${filterAttr}[]=${el}&`;
+    })
+    return myFilter;
 }
 
 function handleError (error) {

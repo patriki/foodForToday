@@ -108,7 +108,7 @@ a:focus, a:hover {
 	background-color: #fff;
 }
 
-/* category buttons ****/
+/* category buttons ****/ 
 .category {
   transition: all 400ms ease;
   border-bottom: 4px solid transparent;
@@ -244,6 +244,10 @@ h2{
   margin-bottom: 30px;
 }
 
+h3 {
+  color:#e4e4db;
+}
+
 .white{
   color: rgb(255, 255, 255);
   border-color: #ffffff;
@@ -294,4 +298,59 @@ h2{
 .form-filters .filter-group-title {
   margin: 0;
   padding: 0;
+}
+
+
+/*NAVBAR*/
+
+.brand {
+  text-shadow: 1px 1px 8px grey;
+  font-size: 30px;
+  color: white;
+  font-weight: bold;
+  
+}
+
+.nav-links:hover,
+.brand:hover {
+  color:#6a6b66;
+  text-decoration: none;
+  
+}
+
+.navbar {
+  background-color: #f5f5f5;
+  font-family: "Quicksand"; 
+}
+
+.container>.navbar-header {
+    margin-top: 5px;
+}
+
+.navbar-drop-text {
+  font-size: 18px;
+  margin-right: 2px;
+
+}
+
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus { background-color: #e0c5cf; }
+
+
+.nav-links {
+  height: 62px;
+  font-size: 18px;
+  color: #96998b;
+  font-weight: bold;
+
+}
+
+.icon-big {
+  width:32px;
+  margin-right: 3px;
+}
+
+.icon-small {
+  width:20px;
+  float: right;
 }

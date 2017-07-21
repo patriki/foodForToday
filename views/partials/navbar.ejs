@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-fixed-top">
   <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -8,7 +8,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Food for today</a>
+       <% if (isUserLoggedIn) { %>
+      <a class="brand" href="/search"> <img class="icon-big" src="/images/watermelon.png" alt=""> Food for today</a>
+       <% } else { %>
+      <a class="brand" href="/"> <img class="icon-big" src="/images/watermelon.png" alt=""> Food for today</a>
+        <% } %>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -16,20 +20,22 @@
 
       <ul class="nav navbar-nav navbar-right">
         <% if (isUserLoggedIn) { %>
-          <li><a href="/search">Search</a></li>
-          <p class="navbar-text">Signed in as <%= currentUser.user.username %></p>
-          <li><a href="/logout">Logout</a></li>
+
+          <p class="navbar-text">Hi <%= currentUser.user.username %>!  </p>
+          <li><a class="nav-links" href="/search">Search</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle nav-links" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a class="navbar-drop-text" href="/profile">Profile <img class="icon-small" src="/images/edit.png" alt=""> </a></li>
+                <li><a class="navbar-drop-text" href="/profile/favourites">Favourites <img class="icon-small" src="/images/like.png" alt=""> </a></li>
+              </ul>
+          </li>
+          <li><a class="nav-links" href="/logout"><img class="icon-big" src="/images/exit.png" alt=""> </a></li>
         <% } else { %>
-          <li><a href="/signup">Signup</a></li>
-          <li><a href="/login">Login</a></li>
+          <li><a  class="nav-links" href="/signup">Signup</a></li>
+          <li><a class="nav-links" href="/login">Login</a></li>
         <% } %>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Settings <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="/secret">Secret</a></li>
-            <li><a href="/profile">Profile</a></li>
-          </ul>
-        </li>
+       
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
