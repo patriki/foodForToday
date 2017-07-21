@@ -1,12 +1,23 @@
 <h1> Your favourite recipes  </h1>
-<div class="favs">
-<ul class="list-favs">
-  <% favourites.forEach((recipe) =>{ %>
-    <li class="favourite"> 
-      <span class="id"><%= recipe.yummlyid %></span> 
-      <span class="rating"><%= recipe.rating %></span>
-      <button class="delete">Delete </button>
-    </li>
+<div class="output flex-container">
+  <% favourites.forEach((recipe,index) =>{ %>
+      <article class="flex-item recipe" id="recipe<%= index %>">
+          <div class="image">
+              <img class="imagefordb" src="<%= recipe.image %>">
+          </div>
+          <div class="recipe-info">
+              <span class="id" style="display:none"><%= recipe.yummlyid %></span>
+              <!--<span class='title'> Recipe: </span>-->
+              <div class="recipe-sup">
+                <div class="recipe-title"><span class="name"><%= recipe.name %></span></div>
+                <div class="recipe-fav"><img src="/images/garbage.png" class='recipe-btn delete'></div>
+              </div>
+              <div class="recipe-inf">
+                <div class="recipe-ingredients"><span class='title'> Ingredients: </span> <br><span class="ingredients"><%= [...recipe.ingredients] %></span> </div><br>
+                <div class="recipe-rating"><span class="rating"><%= recipe.rating %></span></div>
+              </div>
+          </div>
+      </article>
   <% }) %>
-</ul>
+</div>
 </div>

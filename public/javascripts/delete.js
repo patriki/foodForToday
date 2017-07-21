@@ -1,12 +1,13 @@
 $(document).ready(()=> {
-    $(".list-favs").on("click",".delete", ()=> {
+    $(".output").on("click",".delete", ()=> {
 
         var $buttonClicked=$(event.target);
+        var recipeid= $(event.target).parents("article").attr("id");
 
         var recipe= {
-            recipeId: $(event.target).siblings(".id").html()
+            recipeId: $(`#${recipeid} .id`).html()
         }
-        
+
         $.ajax({
         url: `http://localhost:3000/delete-favourite`,
         method: "POST",
@@ -15,11 +16,11 @@ $(document).ready(()=> {
         dataType:'json',
         success: function(res) {
           console.log('success --> data :', res);
-          $buttonClicked.parents(".favourite")[0].remove();
+          $buttonClicked.parents("article")[0].remove();
 
         },
         error: handleError
-      
+
       });
     })
 })

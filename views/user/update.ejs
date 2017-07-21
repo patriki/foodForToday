@@ -1,9 +1,12 @@
-<div class="update">
+<div class="login">
   <div class="panel panel-default">
-    <div class="panel-heading">Update personal information</div>
+    <!--<div class="panel-heading">Update personal information</div>-->
     <div class="panel-body">
-      <form action="/update" method="POST">
+      <div class="panel-title">
+        <h2>Update personal information</h2>
+      </div>
 
+      <form action="/update" method="POST">
         <div class="form-group">
           <label for="usernameInput">Username</label>
           <input type="text" class="form-control" id="username" value="<%= currentUser.user.username %>" placeholder="<%= currentUser.user.username %>" name="username">
