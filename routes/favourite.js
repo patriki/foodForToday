@@ -75,6 +75,8 @@ router.get('/profile/favourites', auth.checkLoggedIn('You must be login', '/logi
         populate('favourites').
         exec(function (err, user) {
             if (err) return res.send({ error: 'Something failed!' });
+            console.log(user);
+            console.log(user.favourites);
             res.render("user/favourites", {favourites: user.favourites, scripts:["functions.js", "delete.js"]})
 
         });

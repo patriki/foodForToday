@@ -1,5 +1,4 @@
 .bg-search{
-  background-image: url(http://i.huffpost.com/gen/2679820/images/o-INDIAN-FOOD-facebook.jpg);
   min-height: 100vh;
   min-width: 100vh;
 }
@@ -309,7 +308,7 @@ img {
 }
 .recipe-rating {
   font-size: 80px;
-  color: #f3aeae;
+  color: #f7a142;
   font-weight: 100;
   float: left;
 }
@@ -397,6 +396,7 @@ hr {
 	margin: 0 auto;
 }
 
+
 /*ESTILOS BUSCADOR*/
 
 .title {
@@ -467,4 +467,10 @@ hr {
 .icon-small {
   width:20px;
   float: right;
+}
+
+.save-favourite,
+.delete-favourite,
+.delete {
+  cursor: pointer;
 }

@@ -1,36 +1,36 @@
 <h1> Our recommendations  </h1>
 <div >
-    
+
 <div class="background-darkener">
     <div class="overlay">
     <img class="fondo" src="images/fft-backgroung.jpg" alt="">
     </div>
- <% var counter=1   
- var labelcounter=1;%> 
+ <% var counter=1
+ var labelcounter=1;%>
 <% finalQuestions.forEach( function(question)  { %>
-    <div class="question question<%= counter %>"> 
+    <div class="question question<%= counter %>">
         <div class="popup panel panel-default">
             <div class="panel-body" style="position:relative">
                 <div class="panel-title"> <h2> <%= question.title %> </h2></div>
-                    <form> 
-                    <% question.options.forEach( function(option) { labelcounter++ %> 
+                    <form>
+                    <% question.options.forEach( function(option) { labelcounter++ %>
                          <label for="match_<%= labelcounter %>" class="checkMenu">
-                            <input id= "match_<%= labelcounter %>" type="radio" name="match" value="<%= option.translate %>"> 
-                            <div class="eachCheck"><%= option.answer %></div>  
+                            <input id= "match_<%= labelcounter %>" type="radio" name="match" value="<%= option.translate %>">
+                            <div class="eachCheck"><%= option.answer %></div>
                          </label><br>
-                        
-                        
-                           <% }) %> 
+
+
+                           <% }) %>
                           <i class="fa fa-angle-double-right next blocked"> <span class="next-text">Next!</span></i>
                          </form>
-                </div> 
+                </div>
              </div>
          </div>
          <% counter++
         }) %>
      </div>
-    
+
 </div>
 </div>
 
-<div class="output"></div>
+<div class="output flex-container"></div>

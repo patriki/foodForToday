@@ -47,7 +47,7 @@ app.use(session({
   secret           : "passport-local-strategy",
   resave           : true,
   saveUninitialized: true,
-  cookie           : { maxAge: 3600000000000 }
+  cookie           : { maxAge: 360000000000000 }
 }));
 
 app.use(flash());

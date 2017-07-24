@@ -16,10 +16,10 @@ var auth    = require('../helpers/auth');
 
 router.get('/search', auth.checkLoggedIn('You must be login', '/login'), function(req, res, next) {
 	// console.log(req.user);
-  res.render('search/search', { user: req.user });
+  res.render('search/search', { user: req.user , stylesheets:["index.css"]});
 });
 
-                                                                            
+
 router.get('/classic', auth.checkLoggedIn('You must be login', '/login'), function(req, res, next) {
   res.render('search/classic', {user: req.user, scripts: ['functions.js','favourite.js','classic.js']})
 });

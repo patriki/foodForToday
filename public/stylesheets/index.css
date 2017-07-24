@@ -1,6 +1,6 @@
 body {
   width: 100vw;
-  overflow: hidden;
+  overflow: auto;
 }
 
 
@@ -15,9 +15,9 @@ body {
 .overlay:after {
     content: '\A';
     position: absolute;
-    width: 100%; 
+    width: 100%;
     height:100%;
-    top:0; 
+    top:0;
     left:0;
     background:rgba(0,0,0,0.5);
     opacity: 1;
@@ -33,7 +33,7 @@ body {
 }
 
 .fondo {
-    
+
 }
 
 .container {
@@ -59,11 +59,27 @@ body {
   clear: both;
 }
 
+.site-information2 {
+      position: absolute;
+      top: 81px;
+      left: 462px;
+      width: 36%;
+      text-align: center;
+      padding-top: 3em;
+      margin: auto;
+
+}
+.site-information2:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .phone-container {
   float:left;
   width: 20rem;
   border-radius: 2px;
-  
+
 }
 
 .home-btn {
@@ -73,13 +89,14 @@ body {
     border-radius: 2px;
     box-shadow: 1px 1px 8px #424140;
     text-align: center;
-    
+
 }
 
 .welcome-message {
   width: 100%;
   padding: 10px;
   text-align: center;
+  margin-top: 100px;
 
 
 }
@@ -116,6 +133,7 @@ body {
 
 .separate-words {
   margin-left: 2rem;
+  display: inline-block;
 }
 
 .button-container {
@@ -129,6 +147,9 @@ body {
 
 .signature {
   margin-left: 2rem;
+  display: inline-block;
+  float: right;
+  margin-top: 25px;
 }
 
 

@@ -8,70 +8,74 @@ const questions = [
     title:  'Who is your favourite Spice Girl?',
     type: "Flavor",
     options: [
-                { answer: "Sporty Spice", translate: "flavor.salty.max=0.2&" },
-                { answer: "Posh Spice",   translate: "flavor.bitter.max=1&" },
-                { answer: "Scary Spice",  translate: "flavor.salty.max=1&" },
-                { answer: "Baby Spice",   translate: "flavor.sweet.max=1&" },
-                { answer: "Ginger Spice", translate: "flavor.piquant.max=1&" }
+                { answer: "Sporty Spice", translate: "allowedIngredient[]=lemon&" },
+                { answer: "Posh Spice",   translate: "allowedIngredient[]=onion&" },
+                { answer: "Scary Spice",  translate: "allowedIngredient[]=paprika&" },
+                { answer: "Baby Spice",   translate: "allowedIngredient[]=carrot&" },
+                { answer: "Ginger Spice", translate: "allowedIngredient[]=potato&" }
             ]
 	},
     {
     title:  'Whom would you kill in Game of Thrones?',
     type: "Flavor",
     options: [
-                { answer: "Daenerys", translate: "flavor.piquant.max=0&" },
-                { answer: "Tyrion",   translate: "flavor.bitter.max=1&" },
-                { answer: "Jon Snow", translate: "flavor.sweet.max=0&" },
-                { answer: "Aria",     translate: "flavor.sour.max=1&" },
-                { answer: "Jamie",    translate: "flavor.salty.max=0&" }
+                { answer: "Daenerys", translate: "allowedIngredient[]=lemon&" },
+                { answer: "Tyrion",   translate: "allowedIngredient[]=onion&" },
+                { answer: "Jon Snow", translate: "allowedIngredient[]=paprika&" },
+                { answer: "Aria",     translate: "allowedIngredient[]=carrot&" },
+                { answer: "Jamie",    translate: "allowedIngredient[]=potato&" }
             ]
 	},
     {
-    title:  'Time1',
+    title:  'You have to steal the dog of an sweet old woman in the street. From the following tools, which one would you choose',
     type: "Time",
     options: [
-                { answer: "answer1", translate: "maxTotalTimeInSeconds=5400&" },
-                { answer: "answer2", translate: "maxTotalTimeInSeconds=3600&" }
+                { answer: "sausage", translate: "maxTotalTimeInSeconds=900&" },
+                { answer: "plastic bag", translate: "maxTotalTimeInSeconds=3600&" },
+                { answer: "wine bottle", translate: "maxTotalTimeInSeconds=5400&" }
             ]
 	},
     {
-    title:  'Time2',
+    title:  'Would you kill a butterfly with a canddle for 5€?',
     type: "Time",
     options: [
-                { answer: "answer1", translate: "maxTotalTimeInSeconds=900&" },
-                { answer: "answer2", translate: "maxTotalTimeInSeconds=7200&" }
+                { answer: "No way!! Too much effort for a bug ", translate: "maxTotalTimeInSeconds=900&" },
+                { answer: "Yes! Where is it?", translate: "maxTotalTimeInSeconds=5400&" }
             ]
 	},
     {
-    title:  'Cuisine1',
+    title:  'What would you prefer to eat?',
     type: "Cuisine",
     options: [
-                { answer: "answer1", translate: "allowedCuisine[]=cuisine^cuisine-american&" },
-                { answer: "answer2", translate: "allowedCuisine[]=cuisine^cuisine-mexican&" }
+                { answer: "a cactus", translate: "allowedCuisine[]=cuisine^cuisine-moroccan&" },
+                { answer: "an alive cockroach", translate: "allowedCuisine[]=cuisine^cuisine-mexican&" },
+                { answer: "the moustache of a shrimp", translate: "allowedCuisine[]=cuisine^cuisine-spanish&" }
             ]
 	},
     {
-    title:  'Cuisine2',
+    title:  'If you had to make bread at home, by yourself, what would you do?',
     type: "Cuisine",
     options: [
-                { answer: "answer1", translate: "allowedCuisine[]=cuisine^cuisine-indian&" },
-                { answer: "answer2", translate: "allowedCuisine[]=cuisine^cuisine-french&" }
+                { answer: "Call my granny immediately", translate: "allowedCuisine[]=cuisine^cuisine-spanish&" },
+                { answer: "Google it, of course", translate: "allowedCuisine[]=cuisine^cuisine-american&" },
+                { answer: "I'd try by myself, the sky is the limit", translate: "allowedCuisine[]=cuisine^cuisine-chinese&" }
             ]
 	},
     {
-    title:  'Ingredient1',
+    title:  'Are you someone whom does not admit to peeing in the shower despite doing it?',
     type: "Ingredient",
     options: [
-                { answer: "answer1", translate: "allowedIngredient[]=garlic&" },
-                { answer: "answer2", translate: "allowedIngredient[]=onion&" }
+                { answer: "Eeeeh... mmm.... yes, ok, I am...", translate: "allowedIngredient[]=garlic&" },
+                { answer: "No, I never lie about bathroom stuff", translate: "allowedIngredient[]=avocado&" }
             ]
 	},
     {
-    title:  'Ingredient2',
+    title:  'How continue these serie of numbers: 5, 10, 15, 20, 25, 5, 40...',
     type: "Ingredient",
    options: [
-                { answer: "answer1", translate: "allowedIngredient[]=avocado&" },
-                { answer: "answer2", translate: "allowedIngredient[]=cucumber&" }
+                { answer: "55", translate: "allowedIngredient[]=tomato&" },
+                { answer: "10", translate: "allowedIngredient[]=rice&" },
+                { answer: "80", translate: "allowedIngredient[]=avocado&" }
             ]
 	}
 
