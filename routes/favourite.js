@@ -20,17 +20,17 @@ router.post('/save-favourite', auth.checkLoggedIn('You must be login', '/login')
     ingredients: req.body.recipeIngredients,
     rating: req.body.recipeRating
   });
-console.log(myRecipe);
+
 
   Recipe.findOne({ yummlyid:req.body.recipeId }, "yummlyid", (err, recipe) => {
+     
     if(err) {return res.send({ error: 'Something failed!' })}
     if (recipe === null) {
-        Recipe.create((err,newRecipe) => {
-            if (err) {
-                return res.send({ error: 'Something failed!' });
-            } else {
+        Recipe.create(myRecipe, (err,newRecipe) => {
 
-                console.log("Receta creada");
+            if (err) {
+                return res.send({ error: 'Something failed!' })};
+                
                 User.findOne({ username: req.user.username}, (err, user) => {
                     if(err) { res.send({ error: 'Something failed!' });}
                     user.favourites.push(newRecipe);
@@ -41,9 +41,10 @@ console.log(myRecipe);
 
 
                     });
-                }
+                
     })
        } else {
+       
           User.findOne({ username: req.user.username}, (err, user) => {
                     if(err) { res.send({ error: 'Something failed!' });}
                     user.favourites.push(recipe);
